@@ -1,6 +1,6 @@
 <template>
-  <div class="card col-6 mx-auto my-3">
-    <div class="card-header">Featured</div>
+   <div class="card col-6 mx-auto my-3">
+    <div class="card-header">Help</div>
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
       <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -11,7 +11,13 @@
 
 <script>
 export default {
-  name: "Home",
-  components: {},
-};
+name:'Help',
+setup(){
+
+}
+}
 </script>
+
+<style>
+
+</style>

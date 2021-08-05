@@ -1,12 +1,32 @@
 import { createStore } from 'vuex'
+import auth from './modules/auth.module'
 
 export default createStore({
-  state: {
+  state(){
+    return{
+      message:null
+    }
+  },
+  getters:{
+    message(state){
+      return state.message
+    }
   },
   mutations: {
+    setMessage(state,message){
+      state.message = message
+    },
+    clearMessage(state){
+      state.message = null
+    }
   },
   actions: {
+    setMessage({commit},message){
+      commit('setMessage',message)
+      setTimeout(() => commit('clearMessage'),5000)
+    }
   },
   modules: {
+    auth
   }
 })
