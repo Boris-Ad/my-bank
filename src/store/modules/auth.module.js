@@ -1,6 +1,7 @@
 import axios from "axios";
 import { errorCode } from "../../utils/errors";
 
+
 export default {
   namespaced: true,
   state() {

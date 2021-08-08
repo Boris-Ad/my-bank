@@ -1,17 +1,81 @@
 <template>
-  <div class="card col-6 mx-auto my-3">
-    <div class="card-header">Featured</div>
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example content.</p>
-    </div>
-  </div>
+  <app-page title="List orders">
+    <template #button>
+      <button
+        @click="modal = true"
+        type="button"
+        class="btn btn-secondary btn-sm"
+      >
+        Add order
+      </button>
+    </template>
+    <orders-filter v-model="filter"></orders-filter>
+    <app-loader v-if="loading" />
+    <orders-table v-else :orders="orders"></orders-table>
+    <teleport to="body">
+      <app-modal @close="modal = false" v-if="modal" title="Order">
+        <orders-modal-form @close="modal = false"></orders-modal-form>
+      </app-modal>
+    </teleport>
+  </app-page>
 </template>
 
 <script>
+import { computed, ref, onMounted } from "vue";
+import OrdersTable from "../components/orders/OrdersTable.vue";
+import AppPage from "../components/ui/AppPage.vue";
+import AppModal from "../components/ui/AppModal.vue";
+import OrdersModalForm from "../components/orders/OrdersModalForm.vue";
+import { useStore } from "vuex";
+import AppLoader from "../components/ui/AppLoader.vue";
+import OrdersFilter from "../components/orders/OrdersFilter.vue";
 export default {
   name: "Home",
-  components: {},
+  setup() {
+    const store = useStore();
+    const modal = ref(false);
+    const loading = ref(false);
+    const filter = ref({});
+
+    const orders = computed(() =>
+      store.getters["request/requests"]
+        .filter((el) => {
+          if (filter.value.name) {
+            return el.name.includes(filter.value.name);
+          }
+          return el;
+        })
+        .filter((el) => {
+          if (filter.value.status) {
+            console.log(filter.value.status,el.status);
+            return el.status === filter.value.status;
+          }
+          return el;
+        })
+    );
+
+    onMounted(async () => {
+      loading.value = true;
+      await store.dispatch("request/load");
+      loading.value = false;
+    });
+
+    return {
+      modal,
+      orders,
+      loading,
+      filter,
+    };
+  },
+  components: {
+    AppPage,
+    OrdersTable,
+    AppModal,
+    OrdersModalForm,
+    AppLoader,
+    OrdersFilter,
+  },
 };
 </script>
+,
+    AppLoader
