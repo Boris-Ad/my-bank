@@ -33,8 +33,8 @@
 import { computed, ref, watch } from "vue";
 export default {
   name: "OrdersFilter",
-  emits: ["update:modelValue"],
-  props: ["modelValue"],
+  emits: ["filterValue"],
+ 
   setup(_, { emit }) {
     const name = ref();
     const status = ref();
@@ -46,7 +46,7 @@ export default {
     };
 
     watch([name, status], (values) => {
-      emit("update:modelValue", {
+      emit("filterValue", {
         name: values[0],
         status: values[1],
       });

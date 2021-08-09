@@ -9,7 +9,7 @@
         Add order
       </button>
     </template>
-    <orders-filter v-model="filter"></orders-filter>
+    <orders-filter @filterValue="filterValue"></orders-filter>
     <app-loader v-if="loading" />
     <orders-table v-else :orders="orders"></orders-table>
     <teleport to="body">
@@ -37,6 +37,10 @@ export default {
     const loading = ref(false);
     const filter = ref({});
 
+    const filterValue = (value) => {
+      filter.value = value;
+    };
+
     const orders = computed(() =>
       store.getters["request/requests"]
         .filter((el) => {
@@ -47,7 +51,6 @@ export default {
         })
         .filter((el) => {
           if (filter.value.status) {
-            console.log(filter.value.status,el.status);
             return el.status === filter.value.status;
           }
           return el;
@@ -64,7 +67,7 @@ export default {
       modal,
       orders,
       loading,
-      filter,
+      filterValue,
     };
   },
   components: {

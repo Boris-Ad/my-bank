@@ -14,6 +14,12 @@ const routes = [
     meta:{layout:'main',auth:true}
   },
   {
+    path: '/edit:id',
+    name: 'Edit',
+    component: () => import('../views/Edit.vue'),
+    meta:{layout:'main',auth:true}
+  },
+  {
     path: '/auth',
     name: 'Auth',
     component: () => import('../views/Auth.vue'),

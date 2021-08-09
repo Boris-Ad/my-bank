@@ -10,7 +10,7 @@
         <th scope="col">Phone</th>
         <th scope="col">Amount</th>
         <th scope="col">Status</th>
-        <th scope="col">Active</th>
+        <th scope="col">Editor</th>
       </tr>
     </thead>
     <tbody>
@@ -20,44 +20,38 @@
         <td>{{ order.phone }}</td>
         <td>{{ currency(order.amount) }}</td>
         <app-status :type="order.status" />
-      
+        <td>
+          <router-link
+            v-slot="{ navigate }"
+            custom
+            :to="{ name: 'Edit', params: { id: order.id } }"
+          >
+            <button
+              @click="navigate"
+              type="button"
+              class="btn btn-secondary btn-sm"
+            >
+              Edit
+            </button>
+          </router-link>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import { currency } from '../../utils/currency'
-import AppStatus from '../ui/AppStatus.vue';
+import { currency } from "../../utils/currency";
+import AppStatus from "../ui/AppStatus.vue";
 export default {
   name: "OrdersTable",
   props: ["orders"],
-  setup(){
-    
-    return{currency}
+  setup() {
+    return { currency };
   },
   components: { AppStatus },
 };
-
-
-  // <td>
-  //         <router-link
-  //           v-slot="{ navigate }"
-  //           custom
-  //           :to="{ name: 'Request', params: { id: order.id } }"
-  //         >
-  //           <button
-  //             @click="navigate"
-  //             type="button"
-  //             class="btn btn-warning btn-sm"
-  //           >
-  //             Open
-  //           </button>
-  //         </router-link>
-  //       </td>
 </script>
-
-
 
 <style>
 </style>
