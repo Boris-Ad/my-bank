@@ -62,7 +62,6 @@ export default {
     const store = useStore();
     async function submit(data) {
       await store.dispatch("request/create",data);
-      
       emit("close");
     }
     return { ...useOrderForm(submit) };

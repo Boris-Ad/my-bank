@@ -22,7 +22,6 @@ export default createStore({
       state.message = null
     },
     openSidebar(state){
-      console.log('Open');
       state.sidebar = true
     },
     closeSidebar(state){
@@ -32,7 +31,7 @@ export default createStore({
   actions: {
     setMessage({commit},message){
       commit('setMessage',message)
-      setTimeout(() => commit('clearMessage'),1000)
+      setTimeout(() => commit('clearMessage'),6000)
     }
   },
   modules: {

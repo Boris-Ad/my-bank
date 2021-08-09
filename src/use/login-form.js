@@ -37,12 +37,20 @@ export function useLoginForm() {
   );
 
   const onSubmit = handleSubmit(async (values) => {
+    
     try {
       await store.dispatch("auth/login", values);
       store.commit('clearMessage')
       router.push({ name: "Home" });
     } catch (err) {}
   });
+
+  const signUp = handleSubmit(async (values) => {
+    try {
+      await store.dispatch('auth/signUp',values)
+      router.push({ name: "Home" });
+    } catch (err) {}
+  })
 
   const maxSubmitCount = computed(() => submitCount.value >= 5);
 
@@ -60,6 +68,7 @@ export function useLoginForm() {
     passwordError,
     passwordBlur,
     onSubmit,
+    signUp,
     isSubmitting,
     maxSubmitCount,
   };

@@ -5,7 +5,7 @@
     </div>
 
     <div class="card-body">
-      <form @submit.prevent="onSubmit">
+      <form >
         <div :class="['mb-3', { invalid: emailError }]">
           <label for="email" class="form-label">Email</label>
           <input
@@ -32,6 +32,7 @@
         <div class="d-flex justify-content-evenly align-items-center">
 
           <button
+            @click.prevent="onSubmit"
             :disabled="isSubmitting || maxSubmitCount"
             type="submit"
             class="btn btn-primary col-5"
@@ -40,7 +41,7 @@
           </button>
 
           <button
-          @click.prevent=""
+          @click.prevent="signUp"
             type="submit"
             class="btn btn-success col-5"
           >

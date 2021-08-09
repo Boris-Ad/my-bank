@@ -23,7 +23,7 @@
     </h5>
 
      <div class="mb-3 mt-2">
-      <label for="status" class="form-label">Status</label>
+      <label for="status" class="form-label">Status change</label>
       <select v-model="status" class="form-select form-select-sm" id="status">
         <option value="completed">Completed</option>
         <option value="canceled">Canceled</option>

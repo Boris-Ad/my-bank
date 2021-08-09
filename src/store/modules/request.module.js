@@ -29,14 +29,6 @@ export default {
           payload
         );
         commit("addRequest", { ...payload, id: data.name });
-        dispatch(
-          "setMessage",
-          {
-            value: "Order created",
-            type: "primary",
-          },
-          { root: true }
-        );
       } catch (err) {
         dispatch(
           "setMessage",
