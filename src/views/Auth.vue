@@ -29,12 +29,12 @@
           />
           <div v-if="passwordError" class="form-text">{{ passwordError }}</div>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-evenly align-items-center">
 
           <button
             :disabled="isSubmitting || maxSubmitCount"
             type="submit"
-            class="btn btn-primary"
+            class="btn btn-primary col-5"
           >
             Sign in
           </button>
@@ -42,7 +42,7 @@
           <button
           @click.prevent=""
             type="submit"
-            class="btn btn-success"
+            class="btn btn-success col-5"
           >
             Sign up
           </button>

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a @click.prevent class="navbar-brand" href="#">My Bank</a>
+      <a @click.prevent class="navbar-brand" href="#">My Orders</a>
       <ul class="navbar-nav">
         <li class="nav-item">
           <router-link class="nav-link" :to="{ name: 'Home' }"
@@ -12,6 +12,9 @@
           <router-link class="nav-link" :to="{ name: 'Help' }"
             >Help</router-link
           >
+        </li>
+        <li class="nav-item">
+          <a @click.prevent="openSidebar" href="#" class="nav-link">Messages</a>
         </li>
         <li class="nav-item">
           <a @click.prevent="toExit" class="nav-link" href="#">Exit</a>
@@ -34,6 +37,7 @@ export default {
         router.push({ name: "Auth" });
         store.commit("auth/logout");
       },
+      openSidebar: () => store.commit("openSidebar"),
     };
   },
 };
